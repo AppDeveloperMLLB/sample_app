@@ -63,3 +63,125 @@ Riverpodのproviderを配置
 
 
 
+# テストから設計を考えてみる
+
+# Architecture
+
+Flutter のドキュメントのアーキテクチャを参考にしている
+https://docs.flutter.dev/app-architecture
+
+##
+
+```
+lib
+|____ui
+| |____core
+| | |____ui
+| | | |____<shared widgets>
+| | |____themes
+| |____<FEATURE NAME>
+| | |____view_model
+| | | |_____<view_model class>.dart
+| | |____widgets
+| | | |____<feature name>_screen.dart
+| | | |____<other widgets>
+|____domain
+| |____models
+| | |____<model name>.dart
+|____data
+| |____repositories
+| | |____<repository class>.dart
+| |____services
+| | |____<service class>.dart
+| |____model
+| | |____<api model class>.dart
+|____config
+|____utils
+|____routing
+|____main_staging.dart
+|____main_development.dart
+|____main.dart
+
+// The test folder contains unit and widget tests
+test
+|____data
+|____domain
+|____ui
+|____utils
+
+// The testing folder contains mocks other classes need to execute tests
+testing
+|____fakes
+|____models
+```
+
+# Data
+
+## Repository
+
+Service を呼び出して、以下のことを行う
+
+- エラー処理
+- データの更新
+- データの取得
+- 取得したデータを Domain の Model に変換
+
+## Service
+
+必要なデータがアプリケーションの Dart コードの外部にある場合、サービスを使う
+
+- iOS や Android API などの基盤となるプラットフォーム
+- REST エンドポイント
+- ローカルファイル
+- データベース
+
+## Provider
+
+データの取得に関しては、Riverpod の機能を使用した方がテストが書きやすく、キャッシュも楽なため、Provider を設ける  
+データ取得時の流れとしては以下になる  
+Service -> Repository -> Provider -> ViewModel or UI
+
+# Domain
+
+## Model
+
+ビジネスロジックを含むモデルクラス
+
+## UseCase
+
+主に、ViewModel 内に存在するビジネスロジックをカプセル化するために使用され、次の条件の 1 つ以上を満たす場合使用が推奨されます。
+
+- 複数のリポジトリからのデータのマージが必要
+- 非常に複雑である
+- ロジックが異なる ViewModel で再利用される場合
+
+### UseCase は必須か？
+
+UseCase はオプションとします。  
+つまり、基本的には、ViewModel から直接 Repository を使ってデータの取得・更新を行うのを推奨します。
+
+# UI
+
+## ViewModel
+
+UI の状態を管理する  
+具体的には以下の役割を持つ
+
+- Repository、または、Provider からデータを取得し、View での表示に適した形式に変換する（たとえば、データのフィルタリング、並べ替え、集計などを行います）
+- View で必要な現在の状態を維持して、データを失うことなく View を再構築できるようにします
+- ボタンの押下やフォームの送信などのイベント ハンドラーにアタッチできるコールバックを View に公開します
+
+### ViewModel は必須か？
+
+各画面で、基本的には使うことになると思う。  
+しかし、単純にデータをとってきて表示するだけの画面の場合は、ViewModel を使わず、直接 Provider を使っても問題ない
+
+## View
+
+Widget で表示を実装する  
+ビジネスロジックは含めず、以下の簡単なロジックのみが含まれる
+
+- ビューモデルのフラグまたは null 許容フィールドに基づいてウィジェットを表示または非表示にする単純な if ステートメント
+- アニメーションロジック
+- 画面サイズや向きなどのデバイス情報に基づいたレイアウト ロジック
+- シンプルなルーティングロジック

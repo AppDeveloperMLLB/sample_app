@@ -3,7 +3,26 @@ setup:
 	fvm flutter clean
 	fvm flutter pub get
 
-flutter_setup:
+flutter_setup_localizations:
+	fvm flutter pub add intl:any
+	fvm flutter pub add flutter_localizations --sdk=flutter
+	fvm flutter pub add slang
+	fvm flutter pub add slang_flutter
+	fvm flutter pub add --dev slang_build_runner
+	mkdir assets/i18n
+	touch assets/i18n/strings.i18n.yaml
+	touch assets/i18n/strings_jp.i18n.yaml
+	touch slang.yaml
+	echo "input_directory: assets/i18n\ninput_file_pattern: .i18n.yaml\noutput_directory: lib/i18n" > slang.yaml
+	
+flutter_setup_multi_screen:
+	fvm flutter pub add flutter_screenutil
+
+flutter_setup_router:
+	fvm flutter pub add go_router
+	fvm flutter pub add --dev go_router_builder
+
+flutter_setup_all:
 	fvm flutter pub add --dev build_runner
 	# flutterの日本語化対応用
 	# fvm flutter pub add intl:any

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_app/app_state/logged_in_provider.dart';
 import 'package:sample_app/ui/features/home/widgets/home_page.dart';
+import 'package:sample_app/ui/features/settings/widgets/settings_page.dart';
 import 'package:sample_app/ui/features/user/widgets/login_page.dart';
 
 part 'router.g.dart';
@@ -35,4 +36,17 @@ class LoginRoute extends GoRouteData {
     GoRouterState state,
   ) =>
       const LoginPage();
+}
+
+@TypedGoRoute<SettingsRoute>(path: "/settings")
+class SettingsRoute extends GoRouteData {
+  const SettingsRoute();
+
+  @override
+  Widget build(
+    BuildContext context,
+    GoRouterState state,
+  ) {
+    return const SettingsPage();
+  }
 }

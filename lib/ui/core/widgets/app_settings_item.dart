@@ -13,7 +13,7 @@ class AppSettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: const Text('Language'),
+      title: Text(title),
       tileColor: Colors.white,
       trailing: const Icon(Icons.arrow_forward_ios),
       shape: RoundedRectangleBorder(

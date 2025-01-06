@@ -50,11 +50,9 @@ class _LoginFormState extends ConsumerState<LoginForm> {
           ),
           ElevatedButton(
             onPressed: () {
-              ref.read(loggedInProvider.notifier).setLoggedIn(true);
-              const SettingsRoute().go(context);
-              // if (formKey.currentState!.validate()) {
-              //   login();
-              // }
+              if (formKey.currentState!.validate()) {
+                login();
+              }
             },
             child: const Text('Submit'),
           ),

@@ -3,7 +3,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sample_app/router/router_provider.dart';
 import 'package:sample_app/ui/core/localizations/strings.g.dart';
-import 'package:sample_app/ui/features/user/widgets/login_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

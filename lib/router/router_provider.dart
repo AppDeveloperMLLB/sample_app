@@ -4,17 +4,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sample_app/app_state/logged_in_provider.dart';
 import 'package:sample_app/router/router.dart';
+import 'package:sample_app/router/router_listenable.dart';
 
 part 'router_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 GoRouter router(Ref ref) {
+  //final listenable = ref.watch(routerListenableProvider.notifier);
   return GoRouter(
     routes: $appRoutes,
+    // refreshListenable: listenable,
+    // redirect: listenable.redirect,
     redirect: (BuildContext context, GoRouterState state) {
-      print('redirect: ${state.matchedLocation}');
       final loggedIn = ref.read(loggedInProvider);
-      print('loggedIn: $loggedIn');
       final shouldRedirectLoginPage =
           !loggedIn && state.matchedLocation != const LoginRoute().location;
       if (shouldRedirectLoginPage) {

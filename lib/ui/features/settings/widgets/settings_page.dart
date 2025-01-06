@@ -15,9 +15,31 @@ class SettingsPage extends StatelessWidget {
         child: ListView(
           children: [
             AppSettingsItem(
-              title: 'Language',
+              title: '問い合わせ',
+              onTap: () {},
+            ),
+            AppSettingsItem(
+              title: 'FAQ',
               onTap: () {
-                //Navigator.pushNamed(context, '/settings/language');
+                //showLicensePage(context: context);
+              },
+            ),
+            AppSettingsItem(
+              title: 'Terms Of Service',
+              onTap: () {
+                //showLicensePage(context: context);
+              },
+            ),
+            AppSettingsItem(
+              title: 'Privacy Policy',
+              onTap: () {
+                //showLicensePage(context: context);
+              },
+            ),
+            AppSettingsItem(
+              title: 'Licenses',
+              onTap: () {
+                showLicensePage(context: context);
               },
             ),
           ],

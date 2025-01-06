@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sample_app/app_state/logged_in_provider.dart';
 import 'package:sample_app/ui/features/home/widgets/home_page.dart';
 import 'package:sample_app/ui/features/settings/widgets/settings_page.dart';
 import 'package:sample_app/ui/features/user/widgets/login_page.dart';
@@ -23,7 +22,7 @@ class HomeRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) =>
-      const HomePage();
+      const HomeRoutePage();
 }
 
 @TypedGoRoute<LoginRoute>(path: "/login")

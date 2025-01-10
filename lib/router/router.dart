@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sample_app/ui/features/ai_chat/widgets/ai_chat_page.dart';
 import 'package:sample_app/ui/features/home/widgets/home_page.dart';
 import 'package:sample_app/ui/features/settings/widgets/settings_page.dart';
 import 'package:sample_app/ui/features/user/widgets/login_page.dart';
@@ -47,5 +48,18 @@ class SettingsRoute extends GoRouteData {
     GoRouterState state,
   ) {
     return const SettingsPage();
+  }
+}
+
+@TypedGoRoute<AIChatRoute>(path: "/ai-chat")
+class AIChatRoute extends GoRouteData {
+  const AIChatRoute();
+
+  @override
+  Widget build(
+    BuildContext context,
+    GoRouterState state,
+  ) {
+    return const AIChatPage();
   }
 }

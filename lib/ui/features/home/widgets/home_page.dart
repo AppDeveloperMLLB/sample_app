@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample_app/ui/core/localizations/strings.g.dart';
+import 'package:sample_app/ui/features/ai_chat/widgets/ai_chat_page.dart';
 import 'package:sample_app/ui/features/home/widgets/home_page_body.dart';
 import 'package:sample_app/ui/features/settings/widgets/settings_page.dart';
 
@@ -15,9 +16,7 @@ class _HomeRoutePageState extends State<HomeRoutePage> {
   static const _screens = [
     HomePage(),
     SettingsPage(),
-    // BookmarkScreen(),
-    // NotificationScreen(),
-    // AccountScreen()
+    AIChatPage(),
   ];
 
   @override
@@ -35,6 +34,10 @@ class _HomeRoutePageState extends State<HomeRoutePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: '設定',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Chat',
           ),
         ],
         type: BottomNavigationBarType.fixed,

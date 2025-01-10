@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
       $homeRoute,
       $loginRoute,
       $settingsRoute,
+      $aIChatRoute,
     ];
 
 RouteBase get $homeRoute => GoRouteData.$route(
@@ -66,6 +67,28 @@ extension $SettingsRouteExtension on SettingsRoute {
 
   String get location => GoRouteData.$location(
         '/settings',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $aIChatRoute => GoRouteData.$route(
+      path: '/ai-chat',
+      factory: $AIChatRouteExtension._fromState,
+    );
+
+extension $AIChatRouteExtension on AIChatRoute {
+  static AIChatRoute _fromState(GoRouterState state) => const AIChatRoute();
+
+  String get location => GoRouteData.$location(
+        '/ai-chat',
       );
 
   void go(BuildContext context) => context.go(location);

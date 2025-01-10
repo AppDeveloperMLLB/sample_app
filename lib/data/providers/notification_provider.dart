@@ -1,7 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sample_app/data/repositories/notifications/notification_repository.dart';
-import 'package:sample_app/data/providers/user_data_provider.dart';
 
 part 'notification_provider.g.dart';
 

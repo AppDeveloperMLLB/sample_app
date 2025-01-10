@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sample_app/app_state/logged_in_provider.dart';
 import 'package:sample_app/router/router.dart';
-import 'package:sample_app/router/router_listenable.dart';
 
 part 'router_provider.g.dart';
 

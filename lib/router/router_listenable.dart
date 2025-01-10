@@ -17,7 +17,6 @@ class RouterListenable extends _$RouterListenable implements Listenable {
     _loggedIn = ref.watch(loggedInProvider);
 
     // ref.listen((prev, next) {
-
     //   _routerListener?.call();
     // });
   }

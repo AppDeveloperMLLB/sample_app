@@ -1,4 +1,6 @@
 .PHONY: setup
+create_prj:
+	fvm flutter create --org com.mllb project_name
 setup:
 	fvm flutter clean
 	fvm flutter pub get
